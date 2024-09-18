@@ -1,0 +1,28 @@
+{
+    "name": "fadaa/ready-tests",
+    "description": "Ready tests",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Fadaa\\ReadyTests\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fadaa\\ReadyTests\\ReadyTestsServiceProvider"
+            ]
+        },
+        "aliases": {
+            "ReadyTests": "Fadaa\\ReadyTests\\Facades\\ReadyTestsFacade"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fadaa media"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
