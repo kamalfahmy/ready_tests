@@ -23,6 +23,6 @@
             "name": "Fadaa media"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {}
 }
