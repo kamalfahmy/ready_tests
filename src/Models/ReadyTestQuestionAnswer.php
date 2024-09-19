@@ -94,10 +94,22 @@ class ReadyTestQuestionAnswer extends Model
       return $query;
     }
 
+
+
+    public function scopeIsCorrect($query)
+    {
+       return $query->where('is_correct', 1);
+    }
+
+    public function scopeIsNotCorrect($query)
+    {
+       return $query->where('is_correct', 0);
+    }
+
     public function scopeGetCorrectedAnswers($query, $getCorrectedAnswers)
     {
       if ($getCorrectedAnswers) {
-        return $query->where('is_correct', 1);
+        return $query->isCorrect();
       }
       return $query;
     }
@@ -105,7 +117,7 @@ class ReadyTestQuestionAnswer extends Model
     public function scopeGetUncorrectedAnswers($query, $getUncorrectedAnswers)
     {
       if ($getUncorrectedAnswers) {
-        return $query->where('is_correct', 0);
+        return $query->isNotCorrect();
       }
       return $query;
     }
@@ -146,6 +158,16 @@ class ReadyTestQuestionAnswer extends Model
 
 
     // global functions
+    private function isCorrect()
+    {
+      return $this->is_correct == 1;
+    }
+
+    private function isNotCorrect()
+    {
+      return $this->is_correct == 0;
+    }
+
     private function getlocale($locale = null)
     {
       return $locale ? $locale : app()->getlocale();

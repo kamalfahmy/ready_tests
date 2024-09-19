@@ -185,6 +185,29 @@ class ReadyTestQuestion extends Model
 
 
 
+    public function correct(array $userAnswers)
+    {
+
+        if ($this->relationLoaded('answers')){
+            $correctedAnswers = $this->answers; // $this->answers are corrected answers which are eager loaded with the question
+        }else{
+            $correctedAnswers = $this->answers()->isCorrect()->select('id', 'ready_test_question_id', 'is_correct')->get();
+        }
+
+
+        $result = [];
+        foreach ($correctedAnswers as $correctedAnswer) {
+            $result[] = [
+                'question_id' => $this->id,
+                'answer_id' => $correctedAnswer->id,
+                'user_answer' => in_array($correctedAnswer->id, $userAnswers) ? true : false,
+            ];
+        }
+
+        return $result;
+
+    }
+
 
 
 

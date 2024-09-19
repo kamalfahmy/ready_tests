@@ -201,8 +201,6 @@ class ReadyTest extends Model
       return $query->whereIn('evaluation_method', $evaluationMethods);
     }
 
-
-
     public function scopeSortedAscBy($query, $field)
     {
       return $query->orderBy($field ?? 'id', 'ASC');
@@ -243,6 +241,26 @@ class ReadyTest extends Model
       return ($this->image && Storage::exists($this->image)) ?  Storage::url($this->image) : null;
     }
 
+
+
+
+
+
+
+
+    public function correct(array $questionsWithAnswers)
+    {
+        // get questions(only selected questions that appeared to the user) with corrected answers
+        $questions = $this->questions()->select('id', 'ready_test_id')
+            ->with(['answers' => function($query) {
+                $query->isCorrect()->select('id', 'question_id', 'is_correct');
+            }])->find(array_keys($questionsWithAnswers));
+
+        foreach ($questions as $question) {
+            $question->correct($questionsWithAnswers[$question->id]); // user answers of this question
+        }
+
+    }
 
 
 
