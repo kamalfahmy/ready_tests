@@ -14,7 +14,7 @@
                 "Fadaa\\ReadyTests\\ReadyTestsServiceProvider"
             ],
             "aliases": {
-                "ReadyTestsService": "Fadaa\\ReadyTests\\Facades\\ReadyTestsServiceFacade"
+                "ReadyTestsService": "Fadaa\\ReadyTests\\ReadyTestsServiceFacade"
             }
         }
     },
