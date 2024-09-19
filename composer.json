@@ -12,10 +12,10 @@
         "laravel": {
             "providers": [
                 "Fadaa\\ReadyTests\\ReadyTestsServiceProvider"
-            ]
-        },
-        "aliases": {
-            "ReadyTests": "Fadaa\\ReadyTests\\Facades\\ReadyTestsFacade"
+            ],
+            "aliases": {
+                "ReadyTestsService": "Fadaa\\ReadyTests\\Facades\\ReadyTestsServiceFacade"
+            }
         }
     },
     "authors": [

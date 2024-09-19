@@ -16,11 +16,14 @@ class ReadyTestsServiceProvider extends ServiceProvider
         // $this->mergeConfigFrom(  __DIR__.'/../config/readytests.php', 'readytests');
 
 
-
         $this->app->bind(ReadyTests::class, function () {
           return new ReadyTests();
         });
 
+
+        $this->app->bind('ReadyTestsService', function () {
+            return new \Fadaa\ReadyTests\Services\ReadyTestsService();
+        });
 
 
         //  ممكن هنا نعمل
@@ -28,7 +31,10 @@ class ReadyTestsServiceProvider extends ServiceProvider
         // لو مشتغلتش فى
         // composer.json  extra aliasis
         // $this->app->alias(LaravelLocalization::class, 'laravellocalization');
-        $this->app->alias(ReadyTests::class, 'ReadyTests');
+        // $this->app->alias(ReadyTests::class, 'ReadyTests');
+        // تسجيل Facade
+        // $this->app->alias('ReadyTestsService', \Fadaa\ReadyTests\Services\ReadyTestsService::class);
+
 
 
     }
